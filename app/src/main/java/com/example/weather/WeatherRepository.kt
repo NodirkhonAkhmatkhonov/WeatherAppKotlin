@@ -13,8 +13,6 @@ import kotlinx.coroutines.flow.flowOn
 
 class WeatherRepository(private val apiService: ApiService = Util.retrofit.create(ApiService::class.java)) {
 
-    private val TAG = "WeatherRepository"
-
     suspend fun getWeatherInfo(cityName: String) = flow<UIState<WeatherEntity>> {
         val response = apiService.getWeatherInfo(cityName, "dd3bbc6aac2d098729b2ce1c03af9966")
 
