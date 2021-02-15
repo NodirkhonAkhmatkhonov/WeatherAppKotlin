@@ -39,10 +39,13 @@ class CityDialogue : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.add.setOnClickListener {
-            GlobalScope.launch {
-                broadcastChannel.send(binding.etCity.text.toString())
+            val text = binding.etCity.text.toString().trim()
+            if (text.isNullOrEmpty().not()) {
+                GlobalScope.launch {
+                    broadcastChannel.send(text)
+                }
+                dismiss()
             }
-            dismiss()
         }
     }
 
